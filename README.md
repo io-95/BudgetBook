@@ -1,2 +1,3 @@
 # BudgetBook
-Konsolenanwendung zum Verwalten von Einnahmen und Ausgaben.
+
+CLI application to manage income and expanses
