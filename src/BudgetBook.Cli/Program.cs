@@ -28,7 +28,11 @@ int PrintStartMenu()
             Console.WriteLine("Invalid choice. Input must be between 1 and 4.");
             continue;
         }
-        return choice;
+        else
+        {
+            return choice;
+        }
+        
     }
 }
 
@@ -53,7 +57,10 @@ int PrintReportMenu()
             Console.WriteLine("Invalid choice. Input must be between 1 and 3");
             continue;
         }
-        return choice;
+        else
+        {
+            return choice;
+        }
     }   
 }
 
