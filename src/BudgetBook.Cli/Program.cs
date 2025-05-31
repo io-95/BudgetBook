@@ -21,7 +21,7 @@ int PrintStartMenu()
     }
     if (choice < 1 || choice > 4)
     {
-        Console.WriteLine("Invalid choice. Defaulting to option 4.");
+        Console.WriteLine("Invalid choice. Input must be between 1 and 4.");
     }
 
     return choice;
@@ -42,7 +42,7 @@ int PrintReportMenu()
     }
     if (choice < 1 || choice > 3)
     {
-        Console.WriteLine("Invalid choice. Defaulting to option 3.");
+        Console.WriteLine("Invalid choice. Input must be between 1 and 3");
     }
 
     return choice;
