@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-int choice = 4; // Default choice is 4 (Exit)
+﻿int choice = 4; // Default choice is 4 (Exit)
 
 Console.WriteLine("Welcome to the Budget Book CLI!");
 
