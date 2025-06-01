@@ -1,6 +1,6 @@
 ﻿namespace BudgetBook.Core;
 
-public class Class1
+public class Transaction
 {
 
 }
