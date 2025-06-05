@@ -53,6 +53,6 @@ public static class PrintMenu
             {
                 return choice;
             }
-        }   
+        }
     }
 }
