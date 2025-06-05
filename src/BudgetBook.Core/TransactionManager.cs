@@ -2,6 +2,10 @@ namespace BudgetBook.Core;
 
 public class TransactionManager
 {
+    /// <summary>
+    /// Function to display the report menu and return the user's choice.
+    /// Must return an integer between 0 and 3.
+    /// </summary>
     private readonly Func<int> _getReportMenuChoice;
 
     public TransactionManager(Func<int> getReportMenuChoice)
