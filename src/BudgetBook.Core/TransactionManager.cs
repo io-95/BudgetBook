@@ -41,7 +41,7 @@ public class TransactionManager
         {
             case 1:
                 Console.WriteLine("Today's Report:");
-                // Call the method to show today's report here
+                AddIncome();
                 break;
             case 2:
                 Console.WriteLine("This Month's Report:");
@@ -51,5 +51,31 @@ public class TransactionManager
                 Console.WriteLine("Returning to Main Menu.");
                 break;
         }
+    }
+
+    private void AddIncome()
+    {
+        // Logic to add income
+        Transaction transaction = CreateTransaction(TransactionType.Income);
+        Console.WriteLine("Income added successfully.");
+    }
+
+    private static Transaction CreateTransaction(TransactionType type)
+    {
+        string description = "";
+        do
+        {
+            Console.Write("Enter the description (max. 200 Characters): ");
+            description = Console.ReadLine() ?? string.Empty;
+        } while (description.Length > 200);
+
+        decimal amount = 0;
+        do
+        {
+            Console.Write("Enter the amount (without currency symbol): ");
+        } while (!decimal.TryParse(Console.ReadLine(), out amount));
+
+        Transaction transaction = new(DateTime.Now, description, amount, type);
+        return transaction;
     }
 }
