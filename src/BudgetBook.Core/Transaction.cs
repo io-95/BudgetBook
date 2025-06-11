@@ -20,16 +20,16 @@ public class Transaction
         Type = type;
     }
 
-    public void PrintTransaction()
+    public void PrintTransaction(Transaction transaction)
     {
-        Console.WriteLine($"{Date.ToShortDateString()} | {Description} | ");
-        if (Type == TransactionType.Income)
+        Console.WriteLine($"{transaction.Date.ToShortDateString()} | {transaction.Description} | ");
+        if (transaction.Type == TransactionType.Income)
         {
-            Console.WriteLine($"+ {Amount:C}");
+            Console.WriteLine($"+ {transaction.Amount:C}");
         }
         else
         {
-            Console.WriteLine($"- {Amount:C}");
+            Console.WriteLine($"- {transaction.Amount:C}");
         }
     }
 }
