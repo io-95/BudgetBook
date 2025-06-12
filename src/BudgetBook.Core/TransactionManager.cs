@@ -57,6 +57,7 @@ public class TransactionManager
     {
         Transaction transaction = CreateTransaction(TransactionType.Income);
         TransactionStore.Instance.AddTransaction(transaction);
+        transaction.PrintTransaction(transaction);
         Console.WriteLine("Income added successfully.\n");
     }
 
@@ -73,7 +74,7 @@ public class TransactionManager
         do
         {
             Console.Write("Enter the amount (without currency symbol): ");
-        } while (!decimal.TryParse(Console.ReadLine(), out amount));
+        } while (!decimal.TryParse(Console.ReadLine(), out amount) || amount <= 0);
 
         Transaction transaction = new(DateTime.Now, description, amount, type);
         return transaction;
