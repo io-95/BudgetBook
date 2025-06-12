@@ -48,7 +48,7 @@ public class TransactionManager
                 // Call the method to show this month's report here
                 break;
             case 3:
-                Console.WriteLine("Returning to Main Menu.");
+                Console.WriteLine("Returning to Start Menu.\n");
                 break;
         }
     }
