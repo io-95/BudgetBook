@@ -1,10 +1,14 @@
 namespace BudgetBook.Core;
 
-public class TransactionStore
+public sealed class TransactionStore
 {
+    private static readonly Lazy<TransactionStore> _instance = new(() => new TransactionStore());
+
+    public static TransactionStore Instance => _instance.Value;
+
     private readonly List<Transaction> _transactions;
 
-    public TransactionStore()
+    private TransactionStore()
     {
         _transactions = new List<Transaction>();
     }
