@@ -55,7 +55,6 @@ public class TransactionManager
 
     private void AddIncome()
     {
-        // Logic to add income
         Transaction transaction = CreateTransaction(TransactionType.Income);
         Console.WriteLine("Income added successfully.");
     }
