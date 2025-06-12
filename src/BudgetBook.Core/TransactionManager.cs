@@ -17,11 +17,11 @@ public class TransactionManager
         switch (input)
         {
             case 1:
-                Console.WriteLine("Adding Income:");
+                Console.WriteLine("\nAdding Income:");
                 AddIncome();
                 break;
             case 2:
-                Console.WriteLine("Adding Expense:");
+                Console.WriteLine("\nAdding Expense:");
                 // Call the method to add expense here
                 break;
             case 3:
@@ -40,15 +40,15 @@ public class TransactionManager
         switch (input)
         {
             case 1:
-                Console.WriteLine("Today's Report:");
+                Console.WriteLine("\nToday's Report:");
                 // Call the method to show todays report here
                 break;
             case 2:
-                Console.WriteLine("This Month's Report:");
+                Console.WriteLine("\nThis Month's Report:");
                 // Call the method to show this month's report here
                 break;
             case 3:
-                Console.WriteLine("Returning to Start Menu.\n");
+                Console.WriteLine("\nReturning to Start Menu.\n");
                 break;
         }
     }
@@ -57,7 +57,7 @@ public class TransactionManager
     {
         Transaction transaction = CreateTransaction(TransactionType.Income);
         TransactionStore.Instance.AddTransaction(transaction);
-        Console.WriteLine("Income added successfully.");
+        Console.WriteLine("Income added successfully.\n");
     }
 
     private static Transaction CreateTransaction(TransactionType type)
