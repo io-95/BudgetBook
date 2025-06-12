@@ -32,7 +32,7 @@ public static class PrintMenu
     {
         while (true)
         {
-            Console.WriteLine("Budget Report:");
+            Console.WriteLine("\nBudget Report:\n");
             Console.WriteLine("[1] Today's Report, [2] This Month's Report, [3] Back to Main Menu");
             Console.Write("Please select an option (standard input is 3): ");
             try
