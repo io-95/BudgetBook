@@ -18,7 +18,7 @@ public class TransactionManager
         {
             case 1:
                 Console.WriteLine("Adding Income:");
-                // Call the method to add income here
+                AddIncome();
                 break;
             case 2:
                 Console.WriteLine("Adding Expense:");
@@ -41,7 +41,7 @@ public class TransactionManager
         {
             case 1:
                 Console.WriteLine("Today's Report:");
-                AddIncome();
+                // Call the method to show todays report here
                 break;
             case 2:
                 Console.WriteLine("This Month's Report:");
