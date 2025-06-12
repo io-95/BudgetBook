@@ -3,7 +3,7 @@
 int choice = 4; // Default choice is 4 (Exit)
 
 TransactionManager transactionManager = new TransactionManager(PrintMenu.PrintReportMenu);
-Console.WriteLine("Welcome to the Budget Book CLI!");
+Console.WriteLine("Welcome to the Budget Book CLI!\n");
 
 while (true)
 {
