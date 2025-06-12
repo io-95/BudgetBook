@@ -56,6 +56,7 @@ public class TransactionManager
     private void AddIncome()
     {
         Transaction transaction = CreateTransaction(TransactionType.Income);
+        TransactionStore.Instance.AddTransaction(transaction);
         Console.WriteLine("Income added successfully.");
     }
 
