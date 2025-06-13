@@ -71,10 +71,20 @@ public class TransactionManager
         } while (description.Length > 200);
 
         decimal amount = 0;
+        string? input;
         do
         {
             Console.Write("Enter the amount (without currency symbol): ");
-        } while (!decimal.TryParse(Console.ReadLine(), out amount) || amount <= 0);
+            input = Console.ReadLine();
+            if (!decimal.TryParse(input, out amount))
+            {
+                Console.WriteLine("Invalid amount. Don't use symbols beside a comma or dot.");
+            }
+            else if (amount <= 0)
+            {
+                Console.WriteLine("Amount must be greater than 0.");
+            }
+        } while (!decimal.TryParse(input, out amount) || amount <= 0);
 
         Transaction transaction = new(DateTime.Now, description, amount, type);
         return transaction;
