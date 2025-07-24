@@ -22,7 +22,7 @@ public class TransactionManager
                 break;
             case 2:
                 Console.WriteLine("\nAdding Expense:");
-                // Call the method to add expense here
+                AddExpense();
                 break;
             case 3:
                 int reportChoice = _getReportMenuChoice();
@@ -63,6 +63,10 @@ public class TransactionManager
 
     private void AddExpense()
     {
+        Transaction transaction = CreateTransaction(TransactionType.Expense);
+        TransactionStore.Instance.AddTransaction(transaction);
+        transaction.PrintTransaction(transaction);
+        Console.WriteLine("Expense added successfully.\n");
     }
 
     private static Transaction CreateTransaction(TransactionType type)
