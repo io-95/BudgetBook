@@ -61,6 +61,10 @@ public class TransactionManager
         Console.WriteLine("Income added successfully.\n");
     }
 
+    private void AddExpense()
+    {
+    }
+
     private static Transaction CreateTransaction(TransactionType type)
     {
         string description = "";
