@@ -77,14 +77,6 @@ public class TransactionManager
             Console.WriteLine("No transactions found for the selected period.");
             return;
         }
-        if (input == 1)
-        {
-            Console.WriteLine("Today's Report:");
-        }
-        else if (input == 2)
-        {
-            Console.WriteLine("This Month's Report:");
-        }
         foreach (var transaction in transactions)
         {
             transaction.PrintTransaction(transaction);
