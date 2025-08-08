@@ -69,6 +69,27 @@ public class TransactionManager
         Console.WriteLine("Expense added successfully.\n");
     }
 
+    private void PrintReport(IEnumerable<Transaction> transactions, int input)
+    {
+        if (!transactions.Any())
+        {
+            Console.WriteLine("No transactions found for the selected period.");
+            return;
+        }
+        if (input == 1)
+        {
+            Console.WriteLine("Today's Report:");
+        }
+        else if (input == 2)
+        {
+            Console.WriteLine("This Month's Report:");
+        }
+        foreach (var transaction in transactions)
+        {
+            transaction.PrintTransaction(transaction);
+        }
+    }
+
     private static Transaction CreateTransaction(TransactionType type)
     {
         string description = "";
