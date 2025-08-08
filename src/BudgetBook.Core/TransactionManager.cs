@@ -41,7 +41,8 @@ public class TransactionManager
         {
             case 1:
                 Console.WriteLine("\nToday's Report:");
-                // Call the method to show todays report here
+                IEnumerable<Transaction> todayTransactions = TransactionStore.Instance.GetTransactionsByDay(DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
+                PrintReport(todayTransactions, input);
                 break;
             case 2:
                 Console.WriteLine("\nThis Month's Report:");
