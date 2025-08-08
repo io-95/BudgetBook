@@ -23,6 +23,10 @@ public sealed class TransactionStore
         return _transactions;
     }
 
+    public IEnumerable<Transaction> GetTransactionsByDay(int day, int month, int year)
+    {
+        return _transactions.Where(t => t.Date.Day == day && t.Date.Month == month && t.Date.Year == year);
+    }
     public IEnumerable<Transaction> GetTransactionsByMonth(int month, int year)
     {
         return _transactions.Where(t => t.Date.Month == month && t.Date.Year == year);
