@@ -22,7 +22,6 @@ public class Transaction
 
     public void PrintTransaction(Transaction transaction, int padding = 0)
     {
-        // TODO: Print the transaction details in a dynamic format
         Console.Write($"{transaction.Date.ToShortDateString()} | {transaction.Description.PadRight(padding)} | ");
         string amountFormatted = transaction.Amount.ToString("C");
         if (transaction.Type == TransactionType.Income)
