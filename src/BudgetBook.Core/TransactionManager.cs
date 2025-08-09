@@ -77,7 +77,7 @@ public class TransactionManager
             Console.WriteLine("No transactions found for the selected period.");
             return;
         }
-        foreach (var transaction in transactions)
+        foreach (Transaction transaction in transactions)
         {
             transaction.PrintTransaction(transaction);
         }
