@@ -22,7 +22,7 @@ public class Transaction
 
     public void PrintTransaction(Transaction transaction, int padding = 0)
     {
-        Console.Write($"{transaction.Date.ToShortDateString()} | {transaction.Description.PadRight(padding)} | ");
+        Console.Write($"{transaction.Date.ToShortDateString()} | {transaction.Description.PadRight(padding)}| ");
         string amountFormatted = transaction.Amount.ToString("C");
         if (transaction.Type == TransactionType.Income)
         {
