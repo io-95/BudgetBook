@@ -42,7 +42,7 @@ public class TransactionManager
             case 1:
                 Console.WriteLine("\nToday's Report:");
                 IEnumerable<Transaction> todayTransactions = TransactionStore.Instance.GetTransactionsByDay(DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
-                PrintReport(todayTransactions, input);
+                PrintReport(todayTransactions);
                 break;
             case 2:
                 Console.WriteLine("\nThis Month's Report:");
@@ -70,7 +70,7 @@ public class TransactionManager
         Console.WriteLine("Expense added successfully.\n");
     }
 
-    private void PrintReport(IEnumerable<Transaction> transactions, int input)
+    private void PrintReport(IEnumerable<Transaction> transactions)
     {
         if (!transactions.Any())
         {
