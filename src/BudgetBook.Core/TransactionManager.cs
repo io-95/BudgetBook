@@ -70,6 +70,16 @@ public class TransactionManager
         Console.WriteLine("Expense added successfully.\n");
     }
 
+    private void PrintReportHeader(int padding)
+    {
+        Console.WriteLine(
+            "Date".PadRight(11) + "| " +
+            "Description".PadRight(padding) + "| " +
+            "Amount".PadLeft(15)
+        );
+        Console.WriteLine(new string('-', padding + 33));
+    }
+
     private void PrintReport(IEnumerable<Transaction> transactions)
     {
         if (!transactions.Any())
@@ -77,9 +87,12 @@ public class TransactionManager
             Console.WriteLine("No transactions found for the selected period.");
             return;
         }
+
+        int maxDescriptionLength = transactions.Max(t => t.Description.Length);
+        PrintReportHeader(maxDescriptionLength);
         foreach (Transaction transaction in transactions)
         {
-            transaction.PrintTransaction(transaction);
+            transaction.PrintTransaction(transaction, maxDescriptionLength);
         }
     }
 
