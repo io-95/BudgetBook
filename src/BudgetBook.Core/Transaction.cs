@@ -20,16 +20,18 @@ public class Transaction
         Type = type;
     }
 
-    public void PrintTransaction(Transaction transaction)
+    public void PrintTransaction(Transaction transaction, int padding = 0)
     {
-        Console.Write($"{transaction.Date.ToShortDateString()} | {transaction.Description} | ");
+        // TODO: Print the transaction details in a dynamic format
+        Console.Write($"{transaction.Date.ToShortDateString()} | {transaction.Description.PadRight(padding)} | ");
+        string amountFormatted = transaction.Amount.ToString("C");
         if (transaction.Type == TransactionType.Income)
         {
-            Console.WriteLine($"+ {transaction.Amount:C}");
+            Console.WriteLine($"+ {amountFormatted, 15}");
         }
         else
         {
-            Console.WriteLine($"- {transaction.Amount:C}");
+            Console.WriteLine($"- {amountFormatted, 15}");
         }
     }
 }
