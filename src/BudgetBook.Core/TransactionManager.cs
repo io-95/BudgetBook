@@ -41,7 +41,8 @@ public class TransactionManager
         {
             case 1:
                 Console.WriteLine("\nToday's Report:");
-                // Call the method to show todays report here
+                IEnumerable<Transaction> todayTransactions = TransactionStore.Instance.GetTransactionsByDay(DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
+                PrintReport(todayTransactions);
                 break;
             case 2:
                 Console.WriteLine("\nThis Month's Report:");
@@ -67,6 +68,32 @@ public class TransactionManager
         TransactionStore.Instance.AddTransaction(transaction);
         transaction.PrintTransaction(transaction);
         Console.WriteLine("Expense added successfully.\n");
+    }
+
+    private void PrintReportHeader(int padding)
+    {
+        Console.WriteLine(
+            "Date".PadRight(11) + "| " +
+            "Description".PadRight(padding) + "| " +
+            "Amount".PadLeft(15)
+        );
+        Console.WriteLine(new string('-', padding + 33));
+    }
+
+    private void PrintReport(IEnumerable<Transaction> transactions)
+    {
+        if (!transactions.Any())
+        {
+            Console.WriteLine("No transactions found for the selected period.");
+            return;
+        }
+
+        int maxDescriptionLength = transactions.Max(t => t.Description.Length);
+        PrintReportHeader(maxDescriptionLength);
+        foreach (Transaction transaction in transactions)
+        {
+            transaction.PrintTransaction(transaction, maxDescriptionLength);
+        }
     }
 
     private static Transaction CreateTransaction(TransactionType type)
