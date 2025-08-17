@@ -1,6 +1,9 @@
 ﻿namespace BudgetBook.Persistence;
 
-public class Class1
+public class PersistenceManager
 {
+    public PersistenceManager()
+    {
 
+    }
 }
