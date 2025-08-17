@@ -18,6 +18,7 @@ public sealed class TransactionStore
     public void AddTransaction(Transaction transaction)
     {
         _transactions.Add(transaction);
+        TransactionAdded?.Invoke(this, transaction);
     }
 
     public IEnumerable<Transaction> GetTransactions()
