@@ -8,6 +8,8 @@ public sealed class TransactionStore
 
     private readonly List<Transaction> _transactions;
 
+    public event EventHandler<Transaction>? TransactionAdded;
+
     private TransactionStore()
     {
         _transactions = new List<Transaction>();
