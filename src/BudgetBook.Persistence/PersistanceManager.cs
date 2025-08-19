@@ -33,6 +33,13 @@ public class PersistenceManager
 
     private async Task SaveTransactionAsync(Transaction transaction)
     {
+        try
+        {
 
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[Autosave Error]: {ex.Message}");
+        }
     }
 }
