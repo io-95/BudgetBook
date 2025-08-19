@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace BudgetBook.Persistence;
 
-public class PersistenceManager
+public class PersistenceManager : IDisposable
 {
     public PersistenceManager()
     {
@@ -60,5 +60,10 @@ public class PersistenceManager
         {
             Console.WriteLine($"[Autosave Error]: {ex.Message}");
         }
+    }
+
+    public void Dispose()
+    {
+        TransactionStore.Instance.TransactionAdded -= OnTransactoinAdded;
     }
 }
