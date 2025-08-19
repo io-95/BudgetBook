@@ -46,6 +46,13 @@ public class PersistenceManager
             }
 
             transactions.Add(transaction);
+
+            string newJson = JsonSerializer.Serialize(
+                transactions,
+                new JsonSerializerOptions { WriteIndented = true }
+            );
+
+            await File.WriteAllTextAsync(fileName, newJson);
         }
         catch (Exception ex)
         {
