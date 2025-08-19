@@ -1,5 +1,6 @@
 ﻿using System.Transactions;
 using BudgetBook.Core;
+using Transaction = BudgetBook.Core.Transaction;
 
 namespace BudgetBook.Persistence;
 
@@ -7,9 +8,11 @@ public class PersistenceManager
 {
     public PersistenceManager()
     {
-        TransactionStore.Instance.TransactionAdded += async (sender, Transaction) =>
-        {
+        TransactionStore.Instance.TransactionAdded += OnTransactoinAdded;
+    }
 
-        };
+    private void OnTransactoinAdded(Object? sender, Transaction transaction)
+    {
+
     }
 }
