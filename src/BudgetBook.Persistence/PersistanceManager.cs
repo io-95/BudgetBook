@@ -21,6 +21,14 @@ public class PersistenceManager
         {
             _runningTasks.Add(task);
         }
+
+        task.ContinueWith(t =>
+        {
+            lock (_lock)
+            {
+                _runningTasks.Remove(task);
+            }
+        });
     }
 
     private async Task SaveTransactionAsync(Transaction transaction)
