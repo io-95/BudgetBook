@@ -53,6 +53,8 @@ public class PersistenceManager
             );
 
             await File.WriteAllTextAsync(fileName, newJson);
+
+            Console.WriteLine($"[Autosave] Transaction saved to {fileName}");
         }
         catch (Exception ex)
         {
