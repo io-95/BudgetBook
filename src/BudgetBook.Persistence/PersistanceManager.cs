@@ -1,6 +1,7 @@
 ﻿using System.Transactions;
 using BudgetBook.Core;
 using Transaction = BudgetBook.Core.Transaction;
+using System.Text.Json;
 
 namespace BudgetBook.Persistence;
 
@@ -35,7 +36,14 @@ public class PersistenceManager
     {
         try
         {
+            string fileName = $"{transaction.Date:yyyy-MM}.json";
 
+            List<Transaction> transactions;
+            if (File.Exists(fileName))
+            {
+                string json = await File.ReadAllTextAsync(fileName);
+                transactions = JsonSerializer.Deserialize<List<Transaction>>(json) ?? [];
+            }
         }
         catch (Exception ex)
         {
