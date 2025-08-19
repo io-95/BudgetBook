@@ -13,6 +13,11 @@ public class PersistenceManager
 
     private void OnTransactoinAdded(Object? sender, Transaction transaction)
     {
+        Task task = SaveTransactionAsync(transaction);
+    }
+
+    private async Task SaveTransactionAsync(Transaction transaction)
+    {
 
     }
 }
