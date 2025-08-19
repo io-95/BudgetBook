@@ -36,7 +36,13 @@ public class PersistenceManager : IDisposable
     {
         try
         {
-            string fileName = $"{transaction.Date:yyyy-MM}.json";
+            string basePath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "BudgetBook"
+            );
+            Directory.CreateDirectory(basePath);
+
+            string fileName = Path.Combine(basePath, $"{transaction.Date:yyyy-MM}.json");
 
             List<Transaction> transactions = [];
             if (File.Exists(fileName))
