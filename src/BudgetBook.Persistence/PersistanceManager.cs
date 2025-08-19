@@ -38,12 +38,14 @@ public class PersistenceManager
         {
             string fileName = $"{transaction.Date:yyyy-MM}.json";
 
-            List<Transaction> transactions;
+            List<Transaction> transactions = [];
             if (File.Exists(fileName))
             {
                 string json = await File.ReadAllTextAsync(fileName);
                 transactions = JsonSerializer.Deserialize<List<Transaction>>(json) ?? [];
             }
+
+            transactions.Add(transaction);
         }
         catch (Exception ex)
         {
