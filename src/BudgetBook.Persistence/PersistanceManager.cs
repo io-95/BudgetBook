@@ -60,11 +60,11 @@ public class PersistenceManager : IDisposable
 
             await File.WriteAllTextAsync(fileName, newJson);
 
-            Console.WriteLine($"[Autosave] Transaction saved to {fileName}");
+            Console.WriteLine($"\n[Autosave] Transaction saved to {fileName}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[Autosave Error]: {ex.Message}");
+            Console.WriteLine($"\n[Autosave Error]: {ex.Message}");
         }
     }
 
