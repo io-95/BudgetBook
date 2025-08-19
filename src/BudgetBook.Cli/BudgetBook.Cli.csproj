@@ -10,4 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BudgetBook.Core\BudgetBook.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../BudgetBook.Persistence/BudgetBook.Persistence.csproj" />
+  </ItemGroup>
 </Project>
