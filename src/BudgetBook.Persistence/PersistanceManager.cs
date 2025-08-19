@@ -9,12 +9,12 @@ public class PersistenceManager : IDisposable
 {
     public PersistenceManager()
     {
-        TransactionStore.Instance.TransactionAdded += OnTransactoinAdded;
+        TransactionStore.Instance.TransactionAdded += OnTransactionAdded;
     }
 
     private readonly List<Task> _runningTasks = [];
     private readonly object _lock = new();
-    private void OnTransactoinAdded(Object? sender, Transaction transaction)
+    private void OnTransactionAdded(Object? sender, Transaction transaction)
     {
         Task task = SaveTransactionAsync(transaction);
 
@@ -64,6 +64,6 @@ public class PersistenceManager : IDisposable
 
     public void Dispose()
     {
-        TransactionStore.Instance.TransactionAdded -= OnTransactoinAdded;
+        TransactionStore.Instance.TransactionAdded -= OnTransactionAdded;
     }
 }
