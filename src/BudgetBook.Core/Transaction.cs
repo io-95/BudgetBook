@@ -7,6 +7,7 @@ public enum TransactionType
 }
 public class Transaction
 {
+    public Guid Id { get; init; } = Guid.NewGuid();
     public string Description { get; set; }
     public decimal Amount { get; set; }
     public DateTime Date { get; set; }

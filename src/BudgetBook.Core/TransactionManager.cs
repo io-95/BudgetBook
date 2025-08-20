@@ -12,7 +12,7 @@ public class TransactionManager
     {
         _getReportMenuChoice = getReportMenuChoice;
     }
-    public void StartMenuHandler(int input)
+    public bool StartMenuHandler(int input)
     {
         switch (input)
         {
@@ -30,9 +30,10 @@ public class TransactionManager
                 break;
             case 4:
                 Console.WriteLine("Exiting the application. Goodbye!");
-                Environment.Exit(0);
-                break;
+                return false;
         }
+
+        return true;
     }
 
     public void ReportMenuHandler(int input)

@@ -8,6 +8,8 @@ public sealed class TransactionStore
 
     private readonly List<Transaction> _transactions;
 
+    public event EventHandler<Transaction>? TransactionAdded;
+
     private TransactionStore()
     {
         _transactions = new List<Transaction>();
@@ -16,6 +18,7 @@ public sealed class TransactionStore
     public void AddTransaction(Transaction transaction)
     {
         _transactions.Add(transaction);
+        TransactionAdded?.Invoke(this, transaction);
     }
 
     public IEnumerable<Transaction> GetTransactions()
