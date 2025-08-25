@@ -47,7 +47,8 @@ public class TransactionManager
                 break;
             case 2:
                 Console.WriteLine("\nThis Month's Report:");
-                // Call the method to show this month's report here
+                IEnumerable<Transaction> thisMonthsTransactions = TransactionStore.Instance.GetTransactionsByMonth(DateTime.Now.Month, DateTime.Now.Year);
+                PrintReport(thisMonthsTransactions);
                 break;
             case 3:
                 Console.WriteLine("\nReturning to Start Menu.\n");
