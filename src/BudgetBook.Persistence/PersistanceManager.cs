@@ -18,18 +18,25 @@ public class PersistenceManager : IDisposable
     {
         Task task = SaveTransactionAsync(transaction);
 
+        AddRunningTask(task);
+
+        task.ContinueWith(t => RemoveRunningTask(task));
+    }
+
+    private void AddRunningTask(Task task)
+    {
         lock (_lock)
         {
             _runningTasks.Add(task);
         }
+    }
 
-        task.ContinueWith(t =>
+    private void RemoveRunningTask(Task task)
+    {
+        lock (_lock)
         {
-            lock (_lock)
-            {
-                _runningTasks.Remove(task);
-            }
-        });
+            _runningTasks.Remove(task);
+        }
     }
 
     private async Task SaveTransactionAsync(Transaction transaction)
