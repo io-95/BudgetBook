@@ -39,14 +39,20 @@ public class PersistenceManager : IDisposable
         }
     }
 
+    private string CreateBasePath()
+    {
+        string basePath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "BudgetBook"
+            );
+        return basePath;
+    }
+
     private async Task SaveTransactionAsync(Transaction transaction)
     {
         try
         {
-            string basePath = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                "BudgetBook"
-            );
+            string basePath = CreateBasePath();
             Directory.CreateDirectory(basePath);
 
             string fileName = Path.Combine(basePath, $"{transaction.Date:yyyy-MM}.json");
