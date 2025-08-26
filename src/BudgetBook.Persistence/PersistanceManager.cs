@@ -83,7 +83,30 @@ public class PersistenceManager : IDisposable
 
     public async Task LoadTransactionsAsync(int year, int month)
     {
+        try
+        {
+            string basePath = CreateBasePath();
+            Directory.CreateDirectory(basePath);
 
+            string fileName = Path.Combine(basePath, $"{year:D4}-{month:D2}.json");
+
+            List<Transaction> transactions = [];
+            if (File.Exists(fileName))
+            {
+                string json = await File.ReadAllTextAsync(fileName);
+                transactions = JsonSerializer.Deserialize<List<Transaction>>(json) ?? [];
+
+                foreach (Transaction tx in transactions)
+                {
+                    TransactionStore.Instance.AddTransaction(tx);
+                }
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\n[Loading Error]: {ex.Message}");
+        }
     }
 
     public void Dispose()
