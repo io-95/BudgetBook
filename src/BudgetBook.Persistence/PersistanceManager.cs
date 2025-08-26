@@ -75,6 +75,11 @@ public class PersistenceManager : IDisposable
         }
     }
 
+    public async Task LoadTransactionsAsync(int year, int month)
+    {
+
+    }
+
     public void Dispose()
     {
         TransactionStore.Instance.TransactionAdded -= OnTransactionAdded;
