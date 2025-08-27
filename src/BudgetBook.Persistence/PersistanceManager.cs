@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace BudgetBook.Persistence;
 
-public class PersistenceManager : IDisposable
+public class PersistenceManager : IDisposable, IAsyncDisposable
 {
     public PersistenceManager()
     {
@@ -109,8 +109,29 @@ public class PersistenceManager : IDisposable
         }
     }
 
+    /// <summary>
+    /// Is waiting for all running write processes.
+    /// Should be called on App-Shutdown.
+    /// </summary>
+    public async Task FlushAsync()
+    {
+        Task[] tasksCopy;
+        lock (_lock)
+        {
+            tasksCopy = _runningTasks.ToArray();
+        }
+        await Task.WhenAll(tasksCopy);
+    }
+
     public void Dispose()
     {
         TransactionStore.Instance.TransactionAdded -= OnTransactionAdded;
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await FlushAsync();
+
+        Dispose();
     }
 }
