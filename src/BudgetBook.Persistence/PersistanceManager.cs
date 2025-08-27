@@ -18,28 +18,41 @@ public class PersistenceManager : IDisposable
     {
         Task task = SaveTransactionAsync(transaction);
 
+        AddRunningTask(task);
+
+        task.ContinueWith(t => RemoveRunningTask(task));
+    }
+
+    private void AddRunningTask(Task task)
+    {
         lock (_lock)
         {
             _runningTasks.Add(task);
         }
+    }
 
-        task.ContinueWith(t =>
+    private void RemoveRunningTask(Task task)
+    {
+        lock (_lock)
         {
-            lock (_lock)
-            {
-                _runningTasks.Remove(task);
-            }
-        });
+            _runningTasks.Remove(task);
+        }
+    }
+
+    private string CreateBasePath()
+    {
+        string basePath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "BudgetBook"
+            );
+        return basePath;
     }
 
     private async Task SaveTransactionAsync(Transaction transaction)
     {
         try
         {
-            string basePath = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                "BudgetBook"
-            );
+            string basePath = CreateBasePath();
             Directory.CreateDirectory(basePath);
 
             string fileName = Path.Combine(basePath, $"{transaction.Date:yyyy-MM}.json");
@@ -65,6 +78,34 @@ public class PersistenceManager : IDisposable
         catch (Exception ex)
         {
             Console.WriteLine($"\n[Autosave Error]: {ex.Message}");
+        }
+    }
+
+    public async Task LoadTransactionsAsync(int year, int month)
+    {
+        try
+        {
+            string basePath = CreateBasePath();
+            Directory.CreateDirectory(basePath);
+
+            string fileName = Path.Combine(basePath, $"{year:D4}-{month:D2}.json");
+
+            List<Transaction> transactions = [];
+            if (File.Exists(fileName))
+            {
+                string json = await File.ReadAllTextAsync(fileName);
+                transactions = JsonSerializer.Deserialize<List<Transaction>>(json) ?? [];
+
+                foreach (Transaction tx in transactions)
+                {
+                    TransactionStore.Instance.AddTransactionSilently(tx);
+                }
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\n[Loading Error]: {ex.Message}");
         }
     }
 
