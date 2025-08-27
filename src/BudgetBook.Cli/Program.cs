@@ -1,7 +1,7 @@
 ﻿using BudgetBook.Core;
 using BudgetBook.Persistence;
 
-using var persistence = new PersistenceManager();
+await using var persistence = new PersistenceManager();
 await persistence.LoadTransactionsAsync(DateTime.Now.Year, DateTime.Now.Month);
 
 int choice = 4; // Default choice is 4 (Exit)
