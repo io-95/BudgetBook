@@ -98,7 +98,7 @@ public class PersistenceManager : IDisposable
 
                 foreach (Transaction tx in transactions)
                 {
-                    TransactionStore.Instance.AddTransaction(tx);
+                    TransactionStore.Instance.AddTransactionSilently(tx);
                 }
             }
 
